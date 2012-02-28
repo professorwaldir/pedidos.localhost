@@ -16,6 +16,7 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
     {
         $element = $this->getElement();
         $label = $element->getLabel();
+        
         if ($translator = $element->getTranslator()) {
             $label = $translator->translate($label);
         }
@@ -24,15 +25,7 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
             return $content;
         }
  
-        if ($element->isRequired()) {
-            $label .= '*';
-        }
-
-        $class = $this->getElement()->getAttrib('labelClass');
-        $this->setOption('class', $class);
-
-        
-        $label .= ':';
+	$label .= ':';
                 
         return "<th>" . 
                 $element->getView()->formLabel($element->getName(), $label) . 
@@ -47,7 +40,7 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
         $element = $this->getElement();
         $helper  = $element->helper;
         $title   = $element->getAttrib('title');
-        
+
 //        return "<div id='divcampo-blah' class='validate tip-stay right validate_error'>" . $element->getView()->$helper(
         return "<td>" . 
             $element->getView()->$helper(
@@ -60,10 +53,8 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
  
     public function buildErrors()
     {
-        $_htmlElementSeparator = '</p><p>';
         $element  = $this->getElement();
         $messages = $element->getMessages();
-        $this->setOption('separator','</p><p>');
         if (empty($messages)) {
             return '';
         }
@@ -72,38 +63,28 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
         if (empty($errors)) {
         return '';
         }
-
-        $html = '<div class="notice error">';
+        
+        $html = '<td><div class="error-left"></div><div class="error-inner">';
         $label = $element->getLabel();
         foreach($errors as $err)
         {
 //            $html .= "<p class='errorText'>[$label]: $err</p>";
             $html .= "<p>$err</p>";
         }
-        $html .= "</div>";
+        $html .= "</div></td>";
 
         $content = '';
-        $separator = $this->getSeparator();
+
         $placement = $this->getPlacement();
         switch ($placement) {
         case (self::APPEND):
-            return $content . $separator . $html;
+            return $content . $html;
         case (self::PREPEND):
-            return $html . $separator . $content;
+            return $html . $content;
         }
 
 //        return '<div class="error">' .
 //               $element->getView()->formErrors($messages) . '</div>';
-    }
- 
-    public function buildDescription()
-    {
-        $element = $this->getElement();
-        $desc    = $element->getDescription();
-        if (empty($desc)) {
-            return '';
-        }
-        return '<table>' . $desc . '</table>';
     }
  
     public function render($content)
@@ -116,27 +97,23 @@ class My_Decorator_Composite extends Zend_Form_Decorator_Abstract
             return $content;
         }
  
-        $separator = $this->getSeparator();
         $placement = $this->getPlacement();
         $label     = $this->buildLabel();
         $input     = $this->buildInput();
         $errors    = $this->buildErrors();
-        $desc      = $this->buildDescription();
  
-        $class = $this->getElement()->getAttrib('divClass');
         $output = '<tr>'
                 . $label
                 . $input
                 . $errors
-                . $desc
                 . '</tr>';
  
         switch ($placement) {
             case (self::PREPEND):
-                return $output . $separator . $content;
+                return $output . $content;
             case (self::APPEND):
             default:
-                return $content . $separator . $output;
+                return $content . $output;
         }
     }
 }
