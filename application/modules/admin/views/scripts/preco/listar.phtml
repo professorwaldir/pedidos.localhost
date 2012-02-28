@@ -1,0 +1,30 @@
+<br><br>
+
+<h1>Preços</h1>
+
+<a href="gravar">Cadastrar novo preco</a>
+<br><br>
+<table border=1 align='center'>
+<tr>
+<td>Tabela</td>
+<td>Peca</td>
+<td>Valor</td>
+<td colspan='2'>Ações</td>
+</tr>
+
+<?php 
+
+foreach ($this->precos as $p) {
+?>
+	<tr>
+	<td><?php echo $p['tabela'];?></td>
+	<td><?php echo $p['peca'];?></td>
+	<td><?php echo $p['valor'];?></td>
+	<td><a href="preco/editar/id/<?php echo $p['preco'];?>">Editar</a></td>
+    <td><a href="deletar/id/<?php echo $p['preco'];?>">Deletar</a></td>	
+	</tr>
+<?php 
+}
+
+?>
+

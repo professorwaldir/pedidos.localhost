@@ -1,0 +1,8 @@
+<h2>Cadastro de Usuario</h2>
+<?php 
+if (!isset($this->error)) {
+	echo $this->form;
+} elseif ($this->error == false) {
+echo "<p>dados cadastrado com sucesso</p>";
+}
+?>
