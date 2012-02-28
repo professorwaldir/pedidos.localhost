@@ -1,4 +1,5 @@
 <?php
+// Teste gitHub
 
 // Define path to application directory
 defined('APPLICATION_PATH')
