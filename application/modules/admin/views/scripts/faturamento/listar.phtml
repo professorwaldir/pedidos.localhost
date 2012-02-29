@@ -1,0 +1,86 @@
+<script>
+    function apagar(link){
+        if(confirm("Deseja realmente apagar o registro? ")){
+            window.location = link;
+        }else{
+            return false;
+        }
+    }
+</script>
+
+<div id="page-heading">
+    <h1><?php echo $this->titulo; ?></h1>
+</div>
+
+<div id="btn_acao_topo">
+    <span>
+        <a href="<?php echo $this->url(array('controller' => 'faturamento', 'module' => 'admin', 'action' => 'inserir')); ?>">Novo Faturamento</a>
+    </span>
+</div>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+    <tr>
+        <th rowspan="3" class="sized"><img src="<?php echo $this->baseUrl('images/shared/side_shadowleft.jpg'); ?>" width="20" height="300" alt="" /></th>
+        <th class="topleft"></th>
+        <td id="tbl-border-top">&nbsp;</td>
+        <th class="topright"></th>
+        <th rowspan="3" class="sized"><img src="<?php echo $this->baseUrl('images/shared/side_shadowright.jpg'); ?>" width="20" height="300" alt="" /></th>
+    </tr>
+
+    <tr>
+        <td id="tbl-border-left"></td>
+        <td>
+            <!--  start content-table-inner ...................................................................... START -->
+            <div id="content-table-inner">
+                <!--  start table-content  -->
+                <div id="table-content">
+                    <!--  start message-yellow -->
+                        <?php if(count($this->data)){ ?>
+                        <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+                            <tr>
+                                <th class="table-header-repeat line-left minwidth-1"><a href="">ID</a>	</th>
+                                <th class="table-header-repeat line-left minwidth-1"><a href="">Código</a></th>
+                                <th class="table-header-repeat line-left"><a href="">Descrição</a></th>
+                                <th class="table-header-repeat line-left"><a href="">Ativo</a></th>
+                                <th class="table-header-options line-left"><a href="">Ação</a></th>
+                            </tr>
+
+                            <?php
+                            foreach ($this->data as $data) {
+                                $data['ativo'] = !$data['ativo'] ? "Ativo" : "Inativo";
+                               if(@$class == null) { $class = 'alternate-row';} else {$class = null;}
+                                ?>
+                                <tr class='<?php echo $class;?>'>
+                                    <td><?php echo $data['faturamento']; ?></td>
+                                    <td><?php echo $data['codigo']; ?></td>
+                                    <td><?php echo $data['descricao']; ?></td>
+                                    <td><?php echo $data['ativo']; ?></td>
+                                    <td class="options-width " style="text-align: center">
+                                        <a href="/admin/faturamento/id/<?php echo $data['faturamento']; ?>" title="Editar Registro" class="icon-1 info-tooltip"></a>
+                                        <a href="javascript: void(0);" onclick='apagar("/admin/faturamento/delete/id/<?php echo $data['faturamento']; ?>");' title="Apagar Registro" class="icon-2 info-tooltip"></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </table>
+                    <?php }else{?>
+                        Nenhum registro cadastrado!
+                    <?php }?>
+                </div>
+                <!--  end content-table  -->
+
+                <div class="clear"></div>
+
+            </div>
+            <!--  end content-table-inner ............................................END  -->
+        </td>
+        <td id="tbl-border-right"></td>
+    </tr>
+    <tr>
+        <th class="sized bottomleft"></th>
+        <td id="tbl-border-bottom">&nbsp;</td>
+        <th class="sized bottomright"></th>
+    </tr>
+</table>
+<div class="clear">&nbsp;</div>
