@@ -36,6 +36,7 @@
         <modelFile modelName="Usuario"/>
         <modelFile modelName="Abstract"/>
         <modelFile modelName="Preco"/>
+        <modelFile modelName="Cliente"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="default">
@@ -78,6 +79,9 @@
             <controllerFile controllerName="CondicaoPagamento">
               <actionMethod actionName="index"/>
             </controllerFile>
+            <controllerFile controllerName="Cliente">
+              <actionMethod actionName="index"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory>
             <formFile formName="Teste"/>
@@ -90,6 +94,9 @@
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="CondicaoPagamento">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Cliente">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
