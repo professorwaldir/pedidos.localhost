@@ -5,9 +5,8 @@ class Application_Form_Peca extends Zend_Form
 
     public function init()
     {
-
-    	$this->addElementPrefixPath('My_Decorator', '/var/www/pedidos/application/forms/My/Decorator', 'decorator');
-    	$this->addDisplayGroupPrefixPath('My_Decorator', '/var/www/pedidos/application/forms/My/Decorator');
+    	$this->addElementPrefixPath('My_Decorator', APPLICATION_PATH.'/forms/My/Decorator', 'decorator');
+    	$this->addDisplayGroupPrefixPath('My_Decorator', APPLICATION_PATH.'/forms/My/Decorator');
     	
     	$this-> setName('Cadastro de peças');
 
