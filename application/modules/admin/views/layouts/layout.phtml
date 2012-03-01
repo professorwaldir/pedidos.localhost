@@ -186,25 +186,25 @@
 
                 <!--  start top-search -->
                 <div id="top-search">
+                    <form name="frmPesquisar" method="post" action="<?php echo $this->url(array('controller' => 'peca', 'module' => 'admin', 'action' => 'listar'));?>">
                     <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
+                        <tr>                        	
+                            <td><input type="text" name="filtro" value="" onblur="if (this.value=='') { this.value=''; }" onfocus="if (this.value=='') { this.value=''; }" class="top-search-inp" /></td>
                             <td>
 
                                 <select  class="styledselect">
-                                    <option value="">All</option>
-                                    <option value="">Products</option>
-                                    <option value="">Categories</option>
-                                    <option value="">Clients</option>
-                                    <option value="">News</option>
+                                    <option value="tbl_peca">Peças</option>
+									<option value="">Transportadora</option>
+									<option value="">Forncecedor</option>
                                 </select> 
 
                             </td>
                             <td>
-                                <input type="image" src="images/shared/top_search_btn.gif"  />
+                                <input type="submit" value="Pesquisar"/>
                             </td>
                         </tr>
                     </table>
+                    </form>
                 </div>
                 <!--  end top-search -->
                 <div class="clear"></div>

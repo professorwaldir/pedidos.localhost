@@ -66,11 +66,23 @@ class Admin_PecaController extends Zend_Controller_Action
     
     public function listarAction() {
     	$model = new Application_Model_Peca();
-    	$dados =  $model->fetchAll();
+    	
+		$filtro = $this->_getParam('filtro');
+    	
+		if (!empty($filtro)) {
+			$cond = $model->select()->where('descricao = ?',$filtro)->orWhere('referencia = ?',$filtro);
+			echo $model->select()->where('descricao = ?',$filtro)->orWhere('referencia = ?',$filtro)->assemble();
+		} else {
+			$cond= null;
+		}
+		
+		
+		$dados =  $model->fetchAll($cond);
+		
     	
     	$pagina = intval($this->_getParam('pagina', 1));
     	$qtde_pagina = intval($this->_getParam('qtde_pagina', 2));    	
-    	    	
+    	   	
 		 $paginator = Zend_Paginator::factory($dados);
         // Seta a quantidade de registros por página
         $paginator->setItemCountPerPage($qtde_pagina);
