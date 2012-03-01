@@ -38,37 +38,27 @@
 			<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 			<tr>
 			<th class="table-header-check"><a id="toggle-all" ></a> </th>
-			<th class="table-header-repeat line-left minwidth-1"><a href="">referencia</a>	</th>
 			<th class="table-header-repeat line-left minwidth-1"><a href="">descricao</a></th>
-			<th class="table-header-repeat line-left"><a href="">unidade</a></th>
-			<th class="table-header-repeat line-left"><a href="">origem</a></th>
-			<th class="table-header-repeat line-left"><a href="">ipi</a></th>
+			<th class="table-header-repeat line-left"><a href="">endereco</a></th>
+			<th class="table-header-repeat line-left"><a href="">telefone</a></th>
 			<th class="table-header-options line-left"><a href="">Options</a></th>
 			</tr>
-			
-			<?php 
-			foreach ($this->paginator as $p) {
-			
-			?>
-			<tr>
-			<td><input  type="checkbox"/></td>
-			<td><?php echo $p['referencia'];?></td>
-			<td><?php echo $p['descricao'];?></td>
-			<td><?php echo $p['unidade'];?></td>
-			<td><?php echo $p['origem'];?></td>
-			<td><?php echo $p['ipi'];?></td>
-			<td class="options-width">
-				<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-				<a href="" title="Edit" class="icon-2 info-tooltip"></a>
-				<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-				<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-				<a href="" title="Edit" class="icon-5 info-tooltip"></a>
-			</td>
-			</tr>
-			<?php 
-			}
-			
-			?>
+
+			<?php foreach ($this->fornecedores as $p) : ?>		
+				<tr>
+					<td><input  type="checkbox"/></td>
+					<td><?php echo $p['descricao'];?></td>
+					<td><?php echo $p['endereco'];?></td>
+					<td><?php echo $p['fone'];?></td>
+					<td class="options-width">
+						<a href="<?php echo $this-> baseUrl('admin/fornecedor/editar/id/' . $p['fornecedor']); ?>" title="Edit" class="icon-1 info-tooltip"></a>
+						<a href="<?php echo $this-> baseUrl('admin/fornecedor/deletar/id/' . $p['fornecedor']); ?>" title="Edit" class="icon-2 info-tooltip"></a>
+						<a href="" title="Edit" class="icon-3 info-tooltip"></a>
+						<a href="" title="Edit" class="icon-4 info-tooltip"></a>
+						<a href="" title="Edit" class="icon-5 info-tooltip"></a>
+					</td>
+				</tr>
+			<?php endforeach; ?>
 		</table>
 		</form>
 		</div>
@@ -97,7 +87,50 @@
 
 			<!-- end actions-box........... -->
 
-		<?php echo $this->paginationControl($this->paginator, 'Sliding','paginacao.phtml'); ?>
+			
+
+			<!--  start paging..................................................... -->
+
+			<table border="0" cellpadding="0" cellspacing="0" id="paging-table">
+
+			<tr>
+
+			<td>
+
+				<a href="" class="page-far-left"></a>
+
+				<a href="" class="page-left"></a>
+
+				<div id="page-info">Page <strong>1</strong> / 15</div>
+
+				<a href="" class="page-right"></a>
+
+				<a href="" class="page-far-right"></a>
+
+			</td>
+
+			<td>
+
+			<select  class="styledselect_pages">
+
+				<option value="">Number of rows</option>
+
+				<option value="">1</option>
+
+				<option value="">2</option>
+
+				<option value="">3</option>
+
+			</select>
+
+			</td>
+
+			</tr>
+
+			</table>
+
+			<!--  end paging................ -->
+
 			
 
 			<div class="clear"></div>

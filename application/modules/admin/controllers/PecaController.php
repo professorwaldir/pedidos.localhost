@@ -5,7 +5,7 @@ class Admin_PecaController extends Zend_Controller_Action
 
     public function init()
     {
-    
+    	
     }
 
     public function indexAction()
@@ -23,6 +23,7 @@ class Admin_PecaController extends Zend_Controller_Action
     	
     	if ($this->_request->isPost()) {
     		$dados = $this->_request->getPost();
+    		$data_nota = $dados['data_nota'];
     		
     		
     		if ($form->isValid($dados)){
@@ -65,7 +66,23 @@ class Admin_PecaController extends Zend_Controller_Action
     
     public function listarAction() {
     	$model = new Application_Model_Peca();
-    	$this->view->pecas = $model->fetchAll();
+    	$dados =  $model->fetchAll();
+    	
+    	$pagina = intval($this->_getParam('pagina', 1));
+    	$qtde_pagina = intval($this->_getParam('qtde_pagina', 2));    	
+    	    	
+		 $paginator = Zend_Paginator::factory($dados);
+        // Seta a quantidade de registros por página
+        $paginator->setItemCountPerPage($qtde_pagina);
+        // numero de paginas que serão exibidas
+        $paginator->setPageRange(7);
+        // Seta a página atual
+        $paginator->setCurrentPageNumber($pagina);
+        // Passa o paginator para a view
+        $this->view->paginator = $paginator;
+        $this->view->pecas = $dados;        
+
+    	
     }
     
     public function deletarAction() {

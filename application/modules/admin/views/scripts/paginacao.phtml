@@ -1,0 +1,41 @@
+	<!--  start paging..................................................... -->
+
+			<table border="0" cellpadding="0" cellspacing="0" id="paging-table">
+
+			<tr>
+
+			<td>
+
+				<a href="<?php echo $this->url(array('pagina' => $this->first)); ?>" class="page-far-left"></a>
+
+				<a href="<?php echo $this->url(array('pagina' => $this->previous)); ?>" class="page-left"></a>
+
+				<div id="page-info">Pagina <strong><?php echo $this->current?></strong> / <?php echo $this->last ?></div>
+
+				<a href="<?php echo $this->url(array('pagina' => $this->next)); ?>" class="page-right"></a>
+
+				<a href="<?php echo $this->url(array('pagina' => $this->last)); ?>" class="page-far-right"></a>
+
+			</td>
+
+			<td>
+
+			<select  class="styledselect_pages">
+
+				<option value="">Qtde</option>
+
+				<option value="">2</option>
+
+				<option value="">5</option>
+
+				<option value="">10</option>
+
+			</select>
+
+			</td>
+
+			</tr>
+
+			</table>
+
+			<!--  end paging................ -->
