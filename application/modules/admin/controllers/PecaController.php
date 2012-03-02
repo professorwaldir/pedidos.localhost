@@ -5,7 +5,8 @@ class Admin_PecaController extends Zend_Controller_Action
 
     public function init()
     {
-    	
+    	$controller = $this->getRequest()->getControllerName();
+    	$this->view->controller = $controller;
     }
 
     public function indexAction()
@@ -68,14 +69,16 @@ class Admin_PecaController extends Zend_Controller_Action
     	$model = new Application_Model_Peca();
     	
 		$filtro = $this->_getParam('filtro');
-    	
+		
+		    	
 		if (!empty($filtro)) {
-			$cond = $model->select()->where('descricao = ?',$filtro)->orWhere('referencia = ?',$filtro);
-			echo $model->select()->where('descricao = ?',$filtro)->orWhere('referencia = ?',$filtro)->assemble();
+			$cond = $model->select()->where('descricao like ?','%'.$filtro.'%')->orWhere('referencia like ?','%'.$filtro.'%');
+			echo $model->select()->where('descricao like ?','%'.$filtro.'%')->orWhere('referencia like ?','%'.$filtro.'%')->assemble();
 		} else {
 			$cond= null;
 		}
 		
+		$this->view->filtro = $filtro;
 		
 		$dados =  $model->fetchAll($cond);
 		

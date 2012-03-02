@@ -5,6 +5,8 @@ class Admin_TransportadoraController extends Zend_Controller_Action
 
     public function init()
     {
+    	$controller = $this->getRequest()->getControllerName();
+    	$this->view->controller = $controller;
     
     }
 
@@ -68,7 +70,20 @@ class Admin_TransportadoraController extends Zend_Controller_Action
     public function listarAction() {
 
     	$model = new Application_Model_Transportadora();
-    	$this->view->transportadoras = $model->fetchAll();
+    	$filtro = $this->_getParam('filtro');
+		
+		    	
+		if (!empty($filtro)) {
+			$cond = $model->select()->where('descricao like ?','%'.$filtro.'%');
+			echo $model->select()->where('descricao like %?%','%'.$filtro.'%')->assemble();
+		} else {
+			$cond= null;
+		}
+		
+		$this->view->filtro = $filtro;
+		
+		$dados =  $model->fetchAll($cond);
+		$this->view->transportadoras = $dados;
 
     }
     

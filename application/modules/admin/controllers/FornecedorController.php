@@ -5,7 +5,8 @@ class Admin_FornecedorController extends Zend_Controller_Action
 
     public function init()
     {
-    
+    	$controller = $this->getRequest()->getControllerName();
+    	$this->view->controller = $controller;
     }
 
     public function indexAction()
@@ -66,9 +67,21 @@ class Admin_FornecedorController extends Zend_Controller_Action
     }
     
     public function listarAction() {
-
     	$model = new Application_Model_Fornecedor();
-    	$this->view->fornecedores = $model->fetchAll();
+    	$filtro = $this->_getParam('filtro');
+		
+		    	
+		if (!empty($filtro)) {
+			$cond = $model->select()->where('descricao like ?','%'.$filtro.'%');
+			echo $model->select()->where('descricao like %?%','%'.$filtro.'%')->assemble();
+		} else {
+			$cond= null;
+		}
+		
+		$this->view->filtro = $filtro;
+		
+		$dados =  $model->fetchAll($cond);
+		$this->view->fornecedores = $dados;
 
 	
     }
