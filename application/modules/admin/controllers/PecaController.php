@@ -11,7 +11,7 @@ class Admin_PecaController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        	$this-> _forward('listar');
+        	$this-> _forward('/listar');
     }
     
     public function cadastroAction()
@@ -57,7 +57,7 @@ class Admin_PecaController extends Zend_Controller_Action
     			//print_r($dados);
     			$values = $form->getValues();
     			$id = $model->update($values,'peca = '.$values['peca']);
-    			$this-> _forward('listar');
+    			$this-> _forward('/listar');
     		}
     	
     	}
@@ -104,7 +104,7 @@ class Admin_PecaController extends Zend_Controller_Action
     	$model = new Application_Model_Peca();
     	$id = $this-> _getParam('id');
     	$res = $model->delete('peca = '. $id);
-    	$this-> _forward('listar');
+    	$this-> _forward('/listar');
     	
     }
 

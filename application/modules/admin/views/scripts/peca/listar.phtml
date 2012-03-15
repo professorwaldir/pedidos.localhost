@@ -58,7 +58,7 @@
 			<td><?php echo $p['origem'];?></td>
 			<td><?php echo $p['ipi'];?></td>
 			<td class="options-width">
-				<a href="" title="Edit" class="icon-1 info-tooltip"></a>
+				<a href="<?php echo $this->url(array('controller' => 'peca', 'module' => 'admin', 'action' => 'editar','id' => $p['peca'])); ?>" title="Edit" class="icon-1 info-tooltip"></a>
 				<a href="" title="Edit" class="icon-2 info-tooltip"></a>
 				<a href="" title="Edit" class="icon-3 info-tooltip"></a>
 				<a href="" title="Edit" class="icon-4 info-tooltip"></a>

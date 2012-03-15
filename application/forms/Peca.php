@@ -19,14 +19,21 @@ class Application_Form_Peca extends Zend_Form
     	$peca = new Zend_Form_Element_Hidden('peca');
     	
     	
+    	
+    	
+    	
+    	
+    	
     	$referencia = new Zend_Form_Element_Text('referencia');
     	$referencia->setLabel('Referencia')
     	->setRequired(true)
     	->setAttrib('class','inp-form')
     	->setDecorators(array('Composite'))
+    	
+    	->addDecorator('Label', array('class' => 'req-username'))
     	->setErrorMessages(array('Campo Obrigatório'))
-    	->addFilter('StripTags')
-    	->addValidator('NotEmpty');
+    	->addFilter('StripTags');
+    	
     	
     	$descricao = new Zend_Form_Element_Text('descricao');
     	$descricao->setLabel('Descricao')

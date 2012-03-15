@@ -94,6 +94,14 @@ class Admin_FornecedorController extends Zend_Controller_Action
     	$this-> _forward('listar');
     	
     }
+    
+ 	public function autocompleteAction() {
+        // First, get the model somehow
+        $this->view->model = $this->getModel();
+
+        // Then get the query, defaulting to an empty string
+        $this->view->query = $this->_getParam('q', '');
+    }
 
 }
 
